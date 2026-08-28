@@ -2,150 +2,168 @@
 <html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
-    <!-- Crucial para garantir que a experiência de toque é nativa e não interferida pelo navegador -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
-    <title>Teclado Tátil Acessível</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Teclado Alfabético Virtual</title>
     <style>
-        /* --- ESTILOS GERAIS E ACESSIBILIDADE --- */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #e8eaf1; 
+            font-family: Arial, "Segoe UI", sans-serif;
+            background-color: #EAF1F6;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 20px;
             margin: 0;
         }
-        h2 { color: #333; margin-bottom: 15px; font-size: 1.8em; }
-        /* Aumento do padding e fonte para conforto visual */
+        h2 {
+            color: #17293B;
+            margin-bottom: 4px;
+            font-size: 26px;
+        }
         #output {
-            width: 90%;
-            max-width: 700px;
-            height: 150px; 
-            font-size: 24px; 
-            padding: 15px;
-            border: 3px solid #3f51b5; 
-            border-radius: 10px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
-            margin-bottom: 30px; /* Mais espaço para o bloco do teclado */
-            background-color: white;
-            touch-action: manipulation; /* Previne rolagem acidental ao tocar nos campos de texto */
-        }
-
-        /* --- LAYOUT DO TECLADO --- */
-        .keyboard-container {
             width: 100%;
-            max-width: 850px; /* Aumentado para acomodar mais botões */
-            display: flex;
-            flex-direction: column;
-            gap: 20px; /* Espaçamento ainda maior entre blocos de funções */
+            max-width: 650px;
+            height: 130px;
+            font-size: 28px;
+            font-family: inherit;
+            padding: 14px;
+            border: 2px solid #AEC2D4;
+            border-radius: 12px;
+            resize: none;
+            margin-bottom: 22px;
+            color: #17293B;
+            background: #FFFFFF;
         }
-
+        .keyboard-section {
+            width: 100%;
+            max-width: 650px;
+            margin-bottom: 18px;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #45596B;
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
         .grid-row {
             display: flex;
-            justify-content: space-between;
-            gap: 8px; 
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
         }
-
         button {
-            /* Aumento do tamanho mínimo para dedos maiores e menos precisão */
-            flex-grow: 1; /* Usa todo o espaço disponível uniformemente */
-            min-width: 0; /* Permite que os botões se ajustem corretamente em telas pequenas */
-            height: 70px; /* Aumentado de 65px para um toque mais seguro */
-            font-size: 22px; /* Fonte ligeiramente maior */
+            flex: 1;
+            height: 66px;
+            font-size: 22px;
             font-weight: bold;
             background-color: #ffffff;
-            border: none;
-            border-radius: 12px; /* Mais arredondado, amigável ao toque */
+            color: #17293B;
+            border: 1px solid #AEC2D4;
+            border-radius: 10px;
             cursor: pointer;
-            touch-action: manipulation; /* Essencial para interação tátil nativa */
+            touch-action: manipulation;
             user-select: none;
-            box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.1s ease, box-shadow 0.1s ease; /* Transição suave para o toque */
         }
-
-        /* Feedback Tátil - CRÍTICO em ecrãs táteis */
-        button:active { 
-            background-color: #9fa8da !important; /* Cor mais escura e imediata de feedback */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transform: translateY(3px); /* Efeito de "afundar" ao tocar */
+        button:active { background-color: #D3E6F7; }
+        button:focus-visible {
+            outline: 3px solid #0B57A4;
+            outline-offset: 2px;
         }
-
-        button:hover {
-            background-color: #c8d9ff; 
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        .btn-wide { flex: 2; background-color: #E3ECF3; }
+        .btn-danger { background-color: #F6D9D6; }
+        .btn-phrase {
+            flex: 1 1 30%;
+            background-color: #FFF7E4;
+            border: 1px solid #E4BE72;
+            color: #5B3E10;
+            font-size: 17px;
         }
-        
-        /* Estilos Específicos de Função/Destaque */
-        .btn-wide { flex-grow: 2; } /* Deixa o botão ESPAÇO mais largo que os outros dois */
-        .btn-action { background-color: #ffcdd2; color: #d32f2f; box-shadow: 0 5px 8px rgba(181, 39, 39, 0.2); }
-        .btn-control { background-color: #cfd8dc; color: #546e7a; box-shadow: 0 5px 8px rgba(79, 91, 132, 0.2); }
-
+        .btn-phrase:active { background-color: #FBEBC5; }
     </style>
 </head>
-<body class="touch-optimized">
+<body>
 
-    <h2>🔤 Teclado Tátil Acessível</h2>
+    <h2>🔤 Teclado Virtual Alfabético</h2>
     <textarea id="output" placeholder="O seu texto aparecerá aqui..."></textarea>
 
-    <div class="keyboard-container">
-        <!-- Seção 1: Números -->
+    <!-- Seção de Números -->
+    <div class="keyboard-section">
+        <div class="section-title">🔢 Números</div>
         <div class="grid-row">
             <button onclick="press('1')">1</button><button onclick="press('2')">2</button>
             <button onclick="press('3')">3</button><button onclick="press('4')">4</button>
-            <button onclick="press('5')">5</button><button onclick="press('6')">6</button>
-            <button onclick="press('7')">7</button><button onclick="press('8')">8</button>
-            <button onclick="press('9')">9</button><button onclick="press('0')">0</button>
+            <button onclick="press('5')">5</button>
+        </div>
+        <div class="grid-row">
+            <button onclick="press('6')">6</button><button onclick="press('7')">7</button>
+            <button onclick="press('8')">8</button><button onclick="press('9')">9</button>
+            <button onclick="press('0')">0</button>
         </div>
     </div>
 
-    <!-- Seção 2: Letras (A-Z) -->
-    <div class="keyboard-container">
-        <h3>Letras</h3>
+    <!-- Seção de Letras -->
+    <div class="keyboard-section">
+        <div class="section-title">🔠 Letras (A-Z)</div>
         <div class="grid-row">
             <button onclick="press('A')">A</button><button onclick="press('B')">B</button>
             <button onclick="press('C')">C</button><button onclick="press('D')">D</button>
-            <button onclick="press('E')">E</button><button onclick="press('F')">F</button>
-            <button onclick="press('G')">G</button><button onclick="press('H')">H</button>
-            <button onclick="press('I')">I</button>
+            <button onclick="press('E')">E</button>
         </div>
         <div class="grid-row">
-            <button onclick="press('J')">J</button><button onclick="press('K')">K</button>
-            <button onclick="press('L')">L</button><button onclick="press('M')">M</button>
-            <button onclick="press('N')">N</button><button onclick="press('O')">O</button>
+            <button onclick="press('F')">F</button><button onclick="press('G')">G</button>
+            <button onclick="press('H')">H</button><button onclick="press('I')">I</button>
+            <button onclick="press('J')">J</button>
+        </div>
+        <div class="grid-row">
+            <button onclick="press('K')">K</button><button onclick="press('L')">L</button>
+            <button onclick="press('M')">M</button><button onclick="press('N')">N</button>
+            <button onclick="press('O')">O</button>
+        </div>
+        <div class="grid-row">
             <button onclick="press('P')">P</button><button onclick="press('Q')">Q</button>
-            <button onclick="press('R')">R</button>
+            <button onclick="press('R')">R</button><button onclick="press('S')">S</button>
+            <button onclick="press('T')">T</button>
         </div>
         <div class="grid-row">
-            <button onclick="press('S')">S</button><button onclick="press('T')">T</button>
             <button onclick="press('U')">U</button><button onclick="press('V')">V</button>
             <button onclick="press('W')">W</button><button onclick="press('X')">X</button>
-            <button onclick="press('Y')">Y</button><button onclick="press('Z')">Z</button>
+            <button onclick="press('Y')">Y</button>
+            <button onclick="press('Z')">Z</button>
         </div>
     </div>
 
-    <!-- Seção 3: Controles -->
-    <div class="keyboard-container">
-        <div class="grid-row" style="flex-direction: row;">
+    <!-- Seção de Controles -->
+    <div class="keyboard-section">
+        <div class="grid-row">
             <button class="btn-wide" onclick="press(' ')">⎵ ESPAÇO</button>
-            <button class="btn-wide btn-action" onclick="backspace()">⌫ APAGAR</button>
-            <button class="btn-wide btn-control" onclick="clearAll()">❌ LIMPAR</button>
+            <button class="btn-wide" onclick="backspace()">⌫ APAGAR</button>
+            <button class="btn-wide btn-danger" onclick="clearAll()">❌ LIMPAR</button>
         </div>
     </div>
+
+    
+    <!-- Seção de Frases Rápidas -->
+    <div class="keyboard-section">
+        <div class="section-title">Frases Rápidas</div>
+        <div class="grid-row">
+            <button class="btn-phrase" onclick="phrase('Sim')">Sim</button>
+            <button class="btn-phrase" onclick="phrase('Não')">Não</button>
+        </div>
+    </div>
+    
 
     <script>
         const txt = document.getElementById('output');
-
-        function press(char) { 
-            txt.value += char; 
+        function press(char) { txt.value += char; }
+        function phrase(text) {
+            txt.value += (txt.value && !txt.value.endsWith(' ') ? ' ' : '') + text + ' ';
         }
-        function backspace() { 
-            txt.value = txt.value.slice(0, -1); 
+        function backspace() { txt.value = txt.value.slice(0, -1); }
+        function clearAll() {
+            if (txt.value.length === 0) return;
+            if (confirm('Tem a certeza que quer apagar todo o texto?')) {
+                txt.value = '';
+            }
         }
-        function clearAll() { 
-            txt.value = ''; 
-        }
-
     </script>
-</body >
-<!-- Nota: O elemento final de fechamento deve ser '</body>' e não um corpo vazio como no exemplo original -->
+</body>
+</html>
