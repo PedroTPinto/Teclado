@@ -168,6 +168,13 @@
             txt.value += (txt.value && !txt.value.endsWith(' ') ? ' ' : '') + text + ' ';
         }
         function backspace() { txt.value = txt.value.slice(0, -1); }
+        function clearAll() {
+            if (txt.value.length === 0) return;
+            if (confirm('Tem a certeza que quer apagar todo o texto?')) {
+                txt.value = '';
+            }
+        }
+
     </script>
 </body>
 </html>
