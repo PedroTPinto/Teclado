@@ -85,26 +85,6 @@
     <h2>🔤 Teclado Virtual Alfabético</h2>
     <textarea id="output" placeholder="O seu texto aparecerá aqui..."></textarea>
 
-    <!-- Seção de Frases Rápidas -->
-    <div class="keyboard-section">
-        <div class="section-title">Frases Rápidas</div>
-        <div class="grid-row">
-            <button class="btn-phrase" onclick="phrase('Sim')">Sim</button>
-            <button class="btn-phrase" onclick="phrase('Não')">Não</button>
-            <button class="btn-phrase" onclick="phrase('Água')">Água</button>
-        </div>
-        <div class="grid-row">
-            <button class="btn-phrase" onclick="phrase('Tenho dor')">Tenho dor</button>
-            <button class="btn-phrase" onclick="phrase('Preciso de ajuda')">Preciso de ajuda</button>
-            <button class="btn-phrase" onclick="phrase('Casa de banho')">Casa de banho</button>
-        </div>
-        <div class="grid-row">
-            <button class="btn-phrase" onclick="phrase('Estou cansado')">Estou cansado</button>
-            <button class="btn-phrase" onclick="phrase('Obrigado')">Obrigado</button>
-            <button class="btn-phrase" onclick="phrase('Chamar o médico')">Chamar o médico</button>
-        </div>
-    </div>
-
     <!-- Seção de Números -->
     <div class="keyboard-section">
         <div class="section-title">🔢 Números</div>
@@ -161,6 +141,17 @@
             <button class="btn-wide btn-danger" onclick="clearAll()">❌ LIMPAR</button>
         </div>
     </div>
+
+    
+    <!-- Seção de Frases Rápidas -->
+    <div class="keyboard-section">
+        <div class="section-title">Frases Rápidas</div>
+        <div class="grid-row">
+            <button class="btn-phrase" onclick="phrase('Sim')">Sim</button>
+            <button class="btn-phrase" onclick="phrase('Não')">Não</button>
+        </div>
+    </div>
+    
 
     <script>
         const txt = document.getElementById('output');
