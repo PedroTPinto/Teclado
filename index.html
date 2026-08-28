@@ -44,14 +44,19 @@
             margin-bottom: 8px;
             font-size: 17px;
         }
+
+        /* As teclas têm tamanho fixo e simplesmente quebram para a
+           linha seguinte quando não cabem mais — não esticam nem
+           encolhem consoante o número de botões por linha. */
         .grid-row {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
-            margin-bottom: 10px;
         }
         button {
-            flex: 1;
+            flex: 0 0 auto;
+            width: 100px;
             height: 66px;
             font-size: 22px;
             font-weight: bold;
@@ -68,10 +73,10 @@
             outline: 3px solid #0B57A4;
             outline-offset: 2px;
         }
-        .btn-wide { flex: 2; background-color: #E3ECF3; }
+        .btn-wide { width: 205px; background-color: #E3ECF3; }
         .btn-danger { background-color: #F6D9D6; }
         .btn-phrase {
-            flex: 1 1 30%;
+            width: 205px;
             background-color: #FFF7E4;
             border: 1px solid #E4BE72;
             color: #5B3E10;
@@ -82,8 +87,8 @@
 </head>
 <body>
 
-    <h2>🔤 Teclado Virtual Alfabético</h2>
-    <textarea id="output" placeholder="O seu texto aparecerá aqui..."></textarea>
+    <h2>Teclado Virtual Alfabético</h2>
+    <textarea id="output" placeholder="O texto vai aparecer aqui..."></textarea>
 
     <!-- Seção de Números -->
     <div class="keyboard-section">
@@ -106,28 +111,30 @@
     <div class="keyboard-section">
         <div class="section-title">Letras (A-Z)</div>
         <div class="grid-row">
-            <button onclick="press('A')">A</button><button onclick="press('B')">B</button>
-            <button onclick="press('C')">C</button><button onclick="press('D')">D</button>
+            <button onclick="press('A')">A</button>
+            <button onclick="press('B')">B</button>
+            <button onclick="press('C')">C</button>
+            <button onclick="press('D')">D</button>
             <button onclick="press('E')">E</button>
-        </div>
-        <div class="grid-row">
-            <button onclick="press('F')">F</button><button onclick="press('G')">G</button>
-            <button onclick="press('H')">H</button><button onclick="press('I')">I</button>
+            <button onclick="press('F')">F</button>
+            <button onclick="press('G')">G</button>
+            <button onclick="press('H')">H</button>
+            <button onclick="press('I')">I</button>
             <button onclick="press('J')">J</button>
-        </div>
-        <div class="grid-row">
-            <button onclick="press('K')">K</button><button onclick="press('L')">L</button>
-            <button onclick="press('M')">M</button><button onclick="press('N')">N</button>
+            <button onclick="press('K')">K</button>
+            <button onclick="press('L')">L</button>
+            <button onclick="press('M')">M</button>
+            <button onclick="press('N')">N</button>
             <button onclick="press('O')">O</button>
-        </div>
-        <div class="grid-row">
-            <button onclick="press('P')">P</button><button onclick="press('Q')">Q</button>
-            <button onclick="press('R')">R</button><button onclick="press('S')">S</button>
+            <button onclick="press('P')">P</button>
+            <button onclick="press('Q')">Q</button>
+            <button onclick="press('R')">R</button>
+            <button onclick="press('S')">S</button>
             <button onclick="press('T')">T</button>
-        </div>
-        <div class="grid-row">
-            <button onclick="press('U')">U</button><button onclick="press('V')">V</button>
-            <button onclick="press('W')">W</button><button onclick="press('X')">X</button>
+            <button onclick="press('U')">U</button>
+            <button onclick="press('V')">V</button>
+            <button onclick="press('W')">W</button>
+            <button onclick="press('X')">X</button>
             <button onclick="press('Y')">Y</button>
             <button onclick="press('Z')">Z</button>
         </div>
@@ -142,7 +149,6 @@
         </div>
     </div>
 
-    
     <!-- Seção de Frases Rápidas -->
     <div class="keyboard-section">
         <div class="section-title">Frases Rápidas</div>
@@ -151,7 +157,6 @@
             <button class="btn-phrase" onclick="phrase('Não')">Não</button>
         </div>
     </div>
-    
 
     <script>
         const txt = document.getElementById('output');
