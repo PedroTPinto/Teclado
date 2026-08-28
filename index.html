@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teclado Alfabético Virtual</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+        h2 { color: #333; margin-bottom: 10px; }
+        #output {
+            width: 90%;
+            max-width: 600px;
+            height: 120px;
+            font-size: 20px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            resize: none;
+            margin-bottom: 20px;
+        }
+        .keyboard-section {
+            width: 100%;
+            max-width: 650px;
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .grid-row {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 6px;
+        }
+        button {
+            flex: 1;
+            height: 55px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #ffffff;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            cursor: pointer;
+            touch-action: manipulation;
+            user-select: none;
+        }
+        button:active { background-color: #ddd; }
+        .btn-wide { flex: 2; background-color: #e0e0e0; }
+        .btn-danger { background-color: #ffcccc; }
+    </style>
+</head>
+<body>
+
+    <h2>🔤 Teclado Virtual Alfabético</h2>
+    <textarea id="output" placeholder="O seu texto aparecerá aqui..."></textarea>
+
+    <!-- Seção de Números -->
+    <div class="keyboard-section">
+        <div class="section-title">🔢 Números</div>
+        <div class="grid-row">
+            <button onclick="press('1')">1</button><button onclick="press('2')">2</button>
+            <button onclick="press('3')">3</button><button onclick="press('4')">4</button>
+            <button onclick="press('5')">5</button><button onclick="press('6')">6</button>
+            <button onclick="press('7')">7</button><button onclick="press('8')">8</button>
+            <button onclick="press('9')">9</button><button onclick="press('0')">0</button>
+        </div>
+    </div>
+
+    <!-- Seção de Letras -->
+    <div class="keyboard-section">
+        <div class="section-title">🔠 Letras (A-Z)</div>
+        <div class="grid-row">
+            <button onclick="press('A')">A</button><button onclick="press('B')">B</button>
+            <button onclick="press('C')">C</button><button onclick="press('D')">D</button>
+            <button onclick="press('E')">E</button><button onclick="press('F')">F</button>
+            <button onclick="press('G')">G</button><button onclick="press('H')">H</button>
+            <button onclick="press('I')">I</button>
+        </div>
+        <div class="grid-row">
+            <button onclick="press('J')">J</button><button onclick="press('K')">K</button>
+            <button onclick="press('L')">L</button><button onclick="press('M')">M</button>
+            <button onclick="press('N')">N</button><button onclick="press('O')">O</button>
+            <button onclick="press('P')">P</button><button onclick="press('Q')">Q</button>
+            <button onclick="press('R')">R</button>
+        </div>
+        <div class="grid-row">
+            <button onclick="press('S')">S</button><button onclick="press('T')">T</button>
+            <button onclick="press('U')">U</button><button onclick="press('V')">V</button>
+            <button onclick="press('W')">W</button><button onclick="press('X')">X</button>
+            <button onclick="press('Y')">Y</button><button onclick="press('Z')">Z</button>
+        </div>
+    </div>
+
+    <!-- Seção de Controles -->
+    <div class="keyboard-section">
+        <div class="grid-row">
+            <button class="btn-wide" onclick="press(' ')">⎵ ESPAÇO</button>
+            <button class="btn-wide" onclick="backspace()">⌫ APAGAR</button>
+            <button class="btn-wide btn-danger" onclick="clearAll()">❌ LIMPAR</button>
+        </div>
+    </div>
+
+    <script>
+        const txt = document.getElementById('output');
+        function press(char) { txt.value += char; }
+        function backspace() { txt.value = txt.value.slice(0, -1); }
+        function clearAll() { txt.value = ''; }
+    </script>
+</body>
+</html>
